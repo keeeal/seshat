@@ -1,0 +1,17 @@
+[package]
+name = "seshat-1"
+version = "0.1.0"
+authors = ["james keal <james@keal.com.au>"]
+edition = "2018"
+
+[dependencies]
+embedded-hal = "^0.2"
+nb = "^0.1"
+cortex-m = "^0.6"
+cortex-m-rt = "^0.6"
+# Panic behaviour, see https://crates.io/keywords/panic-impl for alternatives
+panic-halt = "^0.2"
+
+[dependencies.stm32f4xx-hal]
+version = "^0.8"
+features = ["rt", "stm32f401"]
