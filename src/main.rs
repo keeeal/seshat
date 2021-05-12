@@ -16,9 +16,14 @@ fn main() -> ! {
         stm32::Peripherals::take(),
         cortex_m::peripheral::Peripherals::take(),
     ) {
-        // Set up the LED (pin C13)
-        let gpioc = dp.GPIOC.split();
-        let mut led = gpioc.pc13.into_push_pull_output();
+        // Set up the LED (C13)
+        let gpio_c = dp.GPIOC.split();
+        let mut led = gpio_c.pc13.into_push_pull_output();
+
+        // set up inputs
+        let gpio_b = dp.GPIOB.split();
+        let b0 = gpio_b.pb0.into_pull_up_input();
+        // let b1 = gpio_b.pb1.into_pull_up_input();
 
         // Set up the system clock. We want to run at 48MHz for this one.
         let rcc = dp.RCC.constrain();
@@ -28,11 +33,17 @@ fn main() -> ! {
         let mut delay = hal::delay::Delay::new(cp.SYST, clocks);
 
         loop {
-            // On for 1s, off for 1s.
-            led.set_high().unwrap();
-            delay.delay_ms(1000_u32);
-            led.set_low().unwrap();
-            delay.delay_ms(1000_u32);
+
+            if b0.is_low().unwrap() {
+                led.set_low().unwrap();
+            } else {
+                led.set_high().unwrap();
+            }
+
+            // led.set_high().unwrap();
+            delay.delay_ms(1_u32);
+            // led.set_low().unwrap();
+            // delay.delay_ms(1000_u32);
         }
     }
 
