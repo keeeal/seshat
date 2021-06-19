@@ -1,4 +1,4 @@
-# Seshat-1
+# Seshat
 
 ```
 cargo install cargo-flash
