@@ -45,7 +45,7 @@ module plate(size, radius=0) {
         translate([0, i * 19.05 + 7.1]) square([l, 2], true);
     }
 
-    linear_extrude(size[2] + 3.5)
+    linear_extrude(5)
     translate([0, 28.75]) square([l, 3], true);
 }
 
@@ -126,6 +126,42 @@ module bottom() {
             rounded_square([300, 200], 0, true);
         }
     }
+
+    translate([0, 7.1 - 19.05, -12])
+    hull() {
+        translate([-8, 0, 0]) cylinder(12, 2, 1);
+        translate([ 8, 0, 0]) cylinder(12, 2, 1);
+    }
+    translate([0, 7.1 + 19.05, -14])
+    hull() {
+        translate([-8, 0, 0]) cylinder(14, 2, 1);
+        translate([ 8, 0, 0]) cylinder(14, 2, 1);
+    }
+    translate([-70, 7.1, -13])
+    hull() {
+        translate([-8, 0, 0]) cylinder(13, 2, 1);
+        translate([ 8, 0, 0]) cylinder(13, 2, 1);
+    }
+    translate([-70, 7.1 - 2*19.05, -10])
+    hull() {
+        translate([-8, 0, 0]) cylinder(10, 2, 1);
+        translate([ 8, 0, 0]) cylinder(10, 2, 1);
+    }
+    translate([ 70, 7.1, -13])
+    hull() {
+        translate([-8, 0, 0]) cylinder(13, 2, 1);
+        translate([ 8, 0, 0]) cylinder(13, 2, 1);
+    }
+    translate([ 70, 7.1 - 2*19.05, -10])
+    hull() {
+        translate([-8, 0, 0]) cylinder(10, 2, 1);
+        translate([ 8, 0, 0]) cylinder(10, 2, 1);
+    }
+    translate([0, 7.1 - 2*19.05, -10])
+    hull() {
+        translate([-8, 0, 0]) cylinder(10, 2, 1);
+        translate([ 8, 0, 0]) cylinder(10, 2, 1);
+    }
 }
 
 module top() {
@@ -133,7 +169,7 @@ module top() {
         case();
         union() {
             linear_extrude(100)
-            rounded_square([266, 98], 4, true);
+            rounded_square([266, 98], 3.75, true);
             translate([0, 0, 2])
             linear_extrude(100)
             rounded_square([300, 200], 0, true);
@@ -151,5 +187,5 @@ module top() {
 // blackpill();
 
 top();
-// bottom();
+bottom();
 
