@@ -2,7 +2,9 @@
 $fn = 64;
 EPS = 1e-4;
 
-// A 2D square with rounded corners.
+size = [264, 98];
+
+// A square with rounded corners.
 // "size" defines the position of each corner's
 // center of radius, not the final size of the shape.
 module rounded_square(size, radius, center) {
@@ -53,7 +55,7 @@ module keycap(pressed=false) {
     }
 }
 
-// The STM32F401CCU6 development board.
+// The blackpill development board.
 module blackpill() {
     color([.5, .5, .5]) import("data/blackpill.stl");
 }
@@ -162,7 +164,7 @@ module top(size) {
     plate([size[0], size[1], 1.6]);
 
     // strengthening structures
-    linear_extrude(2.5) for (i = [-2:0])
+    linear_extrude(3) for (i = [-2:0])
     translate([0, i * 19 + 7.1]) square([size[0] + 6, 2], center=true);
     linear_extrude(5)
     translate([0, 28.75]) square([size[0] + 6, 3], center=true);
@@ -172,8 +174,3 @@ module top(size) {
 // translate([-121.15, -40.4, 0]) { switch(); keycap(); }
 
 // translate([-112, 38, -14]) rotate([-4, 0, 0]) blackpill();
-
-size = [264, 98];
-
-top(size);
-bottom(size);

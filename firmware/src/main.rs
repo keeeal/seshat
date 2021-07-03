@@ -25,20 +25,20 @@ type UsbClass = keyberon::Class<'static, UsbBusType, Leds>;
 type UsbDevice = usb_device::device::UsbDevice<'static, UsbBusType>;
 
 pub struct Cols(
+    gpiob::PB10<Input<PullUp>>,
+    gpiob::PB2<Input<PullUp>>,
+    gpiob::PB1<Input<PullUp>>,
+    gpiob::PB0<Input<PullUp>>,
+    gpioa::PA7<Input<PullUp>>,
+    gpioa::PA6<Input<PullUp>>,
+    gpioa::PA5<Input<PullUp>>,
+    gpioa::PA4<Input<PullUp>>,
+    gpioa::PA3<Input<PullUp>>,
+    gpioa::PA2<Input<PullUp>>,
+    gpioa::PA1<Input<PullUp>>,
+    gpioa::PA0<Input<PullUp>>,
     gpiob::PB15<Input<PullUp>>,
     gpioa::PA8<Input<PullUp>>,
-    gpioa::PA9<Input<PullUp>>,
-    gpioa::PA10<Input<PullUp>>,
-    gpioa::PA11<Input<PullUp>>,
-    gpioa::PA12<Input<PullUp>>,
-    gpioa::PA15<Input<PullUp>>,
-    gpiob::PB3<Input<PullUp>>,
-    gpiob::PB4<Input<PullUp>>,
-    gpiob::PB5<Input<PullUp>>,
-    gpiob::PB6<Input<PullUp>>,
-    gpiob::PB7<Input<PullUp>>,
-    gpiob::PB8<Input<PullUp>>,
-    gpiob::PB9<Input<PullUp>>,
 );
 impl_heterogenous_array! {
     Cols,
@@ -48,11 +48,11 @@ impl_heterogenous_array! {
 }
 
 pub struct Rows(
-    gpioa::PA0<Output<PushPull>>,
-    gpioa::PA1<Output<PushPull>>,
-    gpioa::PA2<Output<PushPull>>,
-    gpioa::PA3<Output<PushPull>>,
-    gpioa::PA4<Output<PushPull>>,
+    gpiob::PB3<Output<PushPull>>,
+    gpiob::PB4<Output<PushPull>>,
+    gpiob::PB5<Output<PushPull>>,
+    gpiob::PB6<Output<PushPull>>,
+    gpiob::PB7<Output<PushPull>>,
 );
 impl_heterogenous_array! {
     Rows,
@@ -130,27 +130,27 @@ const APP: () = {
 
         let matrix = Matrix::new(
             Cols(
+                gpiob.pb10.into_pull_up_input(),
+                gpiob.pb2.into_pull_up_input(),
+                gpiob.pb1.into_pull_up_input(),
+                gpiob.pb0.into_pull_up_input(),
+                gpioa.pa7.into_pull_up_input(),
+                gpioa.pa6.into_pull_up_input(),
+                gpioa.pa5.into_pull_up_input(),
+                gpioa.pa4.into_pull_up_input(),
+                gpioa.pa3.into_pull_up_input(),
+                gpioa.pa2.into_pull_up_input(),
+                gpioa.pa1.into_pull_up_input(),
+                gpioa.pa0.into_pull_up_input(),
                 gpiob.pb15.into_pull_up_input(),
                 gpioa.pa8.into_pull_up_input(),
-                gpioa.pa9.into_pull_up_input(),
-                gpioa.pa10.into_pull_up_input(),
-                gpioa.pa11.into_pull_up_input(),
-                gpioa.pa12.into_pull_up_input(),
-                gpioa.pa15.into_pull_up_input(),
-                gpiob.pb3.into_pull_up_input(),
-                gpiob.pb4.into_pull_up_input(),
-                gpiob.pb5.into_pull_up_input(),
-                gpiob.pb6.into_pull_up_input(),
-                gpiob.pb7.into_pull_up_input(),
-                gpiob.pb8.into_pull_up_input(),
-                gpiob.pb9.into_pull_up_input(),
             ),
             Rows(
-                gpioa.pa0.into_push_pull_output(),
-                gpioa.pa1.into_push_pull_output(),
-                gpioa.pa2.into_push_pull_output(),
-                gpioa.pa3.into_push_pull_output(),
-                gpioa.pa4.into_push_pull_output(),
+                gpiob.pb3.into_push_pull_output(),
+                gpiob.pb4.into_push_pull_output(),
+                gpiob.pb5.into_push_pull_output(),
+                gpiob.pb6.into_push_pull_output(),
+                gpiob.pb7.into_push_pull_output(),
             ),
         );
 
