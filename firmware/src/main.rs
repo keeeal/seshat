@@ -25,6 +25,8 @@ type UsbClass = keyberon::Class<'static, UsbBusType, Leds>;
 type UsbDevice = usb_device::device::UsbDevice<'static, UsbBusType>;
 
 pub struct Cols(
+    gpioa::PA8<Output<PushPull>>,
+    gpiob::PB15<Output<PushPull>>,
     gpiob::PB10<Output<PushPull>>,
     gpiob::PB2<Output<PushPull>>,
     gpiob::PB1<Output<PushPull>>,
@@ -37,8 +39,6 @@ pub struct Cols(
     gpioa::PA2<Output<PushPull>>,
     gpioa::PA1<Output<PushPull>>,
     gpioa::PA0<Output<PushPull>>,
-    gpiob::PB15<Output<PushPull>>,
-    gpioa::PA8<Output<PushPull>>,
 );
 impl_heterogenous_array! {
     Cols,
@@ -155,6 +155,8 @@ const APP: () = {
                 gpiob.pb7.into_pull_up_input(),
             ),
             Cols(
+                gpioa.pa8.into_push_pull_output(),
+                gpiob.pb15.into_push_pull_output(),
                 gpiob.pb10.into_push_pull_output(),
                 gpiob.pb2.into_push_pull_output(),
                 gpiob.pb1.into_push_pull_output(),
@@ -167,8 +169,6 @@ const APP: () = {
                 gpioa.pa2.into_push_pull_output(),
                 gpioa.pa1.into_push_pull_output(),
                 gpioa.pa0.into_push_pull_output(),
-                gpiob.pb15.into_push_pull_output(),
-                gpioa.pa8.into_push_pull_output(),
             ),
         );
 
